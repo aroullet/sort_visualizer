@@ -1,4 +1,5 @@
 #include "gui.hpp"
+#include "constants.hpp"
 
 void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j, int delay) {
 
@@ -24,6 +25,6 @@ void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned 
         else
             SDL_SetRenderDrawColor(rend, 0, 0, 0, 0); // black
 
-        SDL_RenderDrawLine(rend, i, 99, i, 99-vec[i]);
+        SDL_RenderDrawLine(rend, i, VECTOR_SIZE-1, i, VECTOR_SIZE-1-vec[i]);
     }
 }

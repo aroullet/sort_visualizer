@@ -2,9 +2,7 @@
 #include <iostream>
 #include "gui.hpp"
 #include "sorting.hpp"
-
-constexpr int WIDTH = 1200;
-constexpr int HEIGHT = 800;
+#include "constants.hpp"
 
 int main() {
 
