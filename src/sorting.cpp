@@ -25,7 +25,7 @@ void bubble_sort(std::vector<unsigned> &vec, SDL_Renderer* rend) {
     }
 }
 
-unsigned partition(std::vector<unsigned>& vec, unsigned left, unsigned right) {
+unsigned partition(std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned left, unsigned right) {
     int pivot_index = left + (right - left) / 2;
     int pivot_value = vec[pivot_index];
     int i = left, j = right;
@@ -48,11 +48,12 @@ unsigned partition(std::vector<unsigned>& vec, unsigned left, unsigned right) {
     return i;
 }
 
-void quick_sort(std::vector<unsigned>& vec, unsigned left, unsigned right) {
+void quick_sort(std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned left, unsigned right) {
     if(left < right) {
-        unsigned pivot_index = partition(vec, left, right);
-        quick_sort(vec, left, pivot_index - 1);
-        quick_sort(vec, pivot_index, right);
+        unsigned pivot_index = partition(vec, rend, left, right);
+        update_gui(vec, rend, left, pivot_index-1);
+        quick_sort(vec, rend, left, pivot_index - 1);
+        quick_sort(vec, rend, pivot_index, right);
     }
 }
 

@@ -8,12 +8,11 @@ void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i
     draw_vector(vec, rend, i, j);
 
     SDL_RenderPresent(rend);
-    SDL_Delay(20);
+    SDL_Delay(100);
 }
 
 void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned current, unsigned compared) {
-    SDL_Rect rect;
-    rect.x = 0; rect.y = 0;
+
     for (int i = 0; i < vec.size(); ++i) {
         if (i == current)
             SDL_SetRenderDrawColor(rend, 0, 0, 255, 255); // blue

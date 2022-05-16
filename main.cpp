@@ -15,7 +15,7 @@ int main() {
     SDL_RenderSetScale(rend, std::get<0>(ASPECT_RATIO), std::get<1>(ASPECT_RATIO));
 
     auto vec = generate_random_vector();
-    bubble_sort(vec, rend);
+    quick_sort(vec, rend, 0, VECTOR_SIZE-1);
 
     SDL_DestroyRenderer(rend);
     SDL_Quit();
