@@ -18,10 +18,8 @@ std::vector<unsigned> generate_random_vector() {
 void bubble_sort(std::vector<unsigned> &vec, SDL_Renderer* rend) {
     for (size_t i = 0; i < vec.size() - 1; ++i) {
         for (size_t j = 0; j < vec.size() - i - 1; ++j) {
-            if (vec[j] > vec[j + 1]) {
+            if (vec[j] > vec[j + 1])
                 std::swap(vec[j], vec[j + 1]);
-                comparison_found(vec, rend, j , j+1);
-            }
             update_gui(vec, rend, j, j+1);
         }
     }

@@ -8,7 +8,7 @@ void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i
     draw_vector(vec, rend, i, j);
 
     SDL_RenderPresent(rend);
-    SDL_Delay(30);
+    SDL_Delay(20);
 }
 
 void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned current, unsigned compared) {
@@ -23,15 +23,4 @@ void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned 
             SDL_SetRenderDrawColor(rend, 0, 0, 0, 0); // black
         SDL_RenderDrawLine(rend, i, 99, i, 99-vec[i]);
     }
-}
-
-void comparison_found(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j) {
-
-    SDL_SetRenderDrawColor(rend, 255, 0, 0, 255); // red
-
-    SDL_RenderDrawLine(rend, i, 99, i, vec[i]);
-    SDL_RenderDrawLine(rend, j, 99, j, vec[j]);
-
-    SDL_RenderPresent(rend);
-    SDL_Delay(200);
 }
