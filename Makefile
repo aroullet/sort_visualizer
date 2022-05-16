@@ -1,27 +1,33 @@
 EXE := sort_visualizer
 
 CXX := g++
-CXXFLAGS := -g -Wall
+CXXFLAGS := -g -Wall -I include/
 LDLIBS := -lSDL2
 LDFLAGS := -g
 SRC := $(shell find . -name "*.cpp")
+HEADERS := $(shell find ./include -name "*.hpp")
 OBJS := $(patsubst %.cpp, %.o, $(SRC))
 
-all: $(EXE)
+.PHONY: all clean run
+
+all: run
 
 $(EXE): $(OBJS)
 	$(CXX)  $(LDFLAGS) -I include/ $(LDLIBS) $(OBJS) -o $(EXE)
 
 depend: .depend
 
-.depend: $(SRC)
+.depend: $(SRC) $(HEADERS)
 	rm -f ./.depend
 	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
 
+include .depend
+
 clean:
-	rm -f $(OBJS) $(EXE)
+	rm -f $(OBJS)
 
 dist-clean: clean
 	rm -f *~ .depend
 
-include .depend
+run: $(EXE) clean
+	./$(EXE)
