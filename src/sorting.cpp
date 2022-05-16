@@ -71,3 +71,43 @@ void selection_sort(std::vector<unsigned>& vec, SDL_Renderer* rend) {
         }
     }
 }
+
+void merge_intervals(std::vector<unsigned>& v, unsigned start, unsigned mid, unsigned end) {
+
+    std::vector<unsigned> temp;
+
+    unsigned i, j;
+    i = start;
+    j = mid + 1;
+
+    while (i <= mid && j <= end) {
+        if (v[i] <= v[j]) {
+            temp.push_back(v[i]);
+            ++i;
+        }
+        else {
+            temp.push_back(v[j]);
+            ++j;
+        }
+    }
+    while (i <= mid) {
+        temp.push_back(v[i]);
+        ++i;
+    }
+    while (j <= end) {
+        temp.push_back(v[j]);
+        ++j;
+    }
+    for (int i = start; i <= end; ++i)
+        v[i] = temp[i - start];
+}
+
+void merge_sort(std::vector<unsigned>& v, SDL_Renderer* rend, unsigned start, unsigned end) {
+    if (start < end) {
+        unsigned mid = (start + end) / 2;
+        update_gui(v, rend, start, end);
+        merge_sort(v, rend, start, mid);
+        merge_sort(v, rend, mid + 1, end);
+        merge_intervals(v, start, mid, end);
+    }
+}
