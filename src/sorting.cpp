@@ -1,10 +1,6 @@
 #include <algorithm>
 #include "sorting.hpp"
 
-constexpr unsigned LOWER_BOUND = 0;
-constexpr unsigned UPPER_BOUND = 100;
-constexpr unsigned VECTOR_SIZE = 100;
-
 std::vector<unsigned> generate_random_vector() {
 
     std::random_device rand_dev;
