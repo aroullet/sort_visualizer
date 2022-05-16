@@ -1,15 +1,37 @@
 #include "gui.hpp"
 
-SDL_Window* initialize_window(int w, int h) {
-    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0)) {
-        printf("Could not initialize SDL: %s.\n", SDL_GetError());
-        exit(-1);
-    }
-    SDL_Window* win = SDL_CreateWindow("Sort Visualizer", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, 0);
+void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j) {
 
-    return win;
+    SDL_SetRenderDrawColor(rend, 0, 0, 0, 255);
+    SDL_RenderClear(rend);
+
+    draw_vector(vec, rend, i, j);
+
+    SDL_RenderPresent(rend);
+    SDL_Delay(30);
 }
 
-SDL_Renderer* get_renderer(SDL_Window* win) {
-    return SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned current, unsigned compared) {
+    SDL_Rect rect;
+    rect.x = 0; rect.y = 0;
+    for (int i = 0; i < vec.size(); ++i) {
+        if (i == current)
+            SDL_SetRenderDrawColor(rend, 0, 0, 255, 255);
+        else if (i == compared)
+            SDL_SetRenderDrawColor(rend, 0, 255, 0, 255);
+        else
+            SDL_SetRenderDrawColor(rend, 255, 255, 255, 255);
+        SDL_RenderDrawLine(rend, i, 100, i, vec[i]);
+    }
+}
+
+void comparison_found(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j) {
+
+    SDL_SetRenderDrawColor(rend, 255, 0, 0, 255);
+
+    SDL_RenderDrawLine(rend, i, 100, i, vec[i]);
+    SDL_RenderDrawLine(rend, j, 100, j, vec[j]);
+
+    SDL_RenderPresent(rend);
+    SDL_Delay(200);
 }

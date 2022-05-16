@@ -1,27 +1,21 @@
-#include <iostream>
 #include "gui.hpp"
 #include "sorting.hpp"
 
-constexpr int WIDTH = 900;
-constexpr int HEIGHT = 1200;
+constexpr int WIDTH = 1200;
+constexpr int HEIGHT = 900;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
 
-    //SDL_Window* win = initialize_window(WIDTH, HEIGHT);
-    //SDL_Renderer* rend = get_renderer(win);
+    SDL_Window* win = nullptr;
+    SDL_Renderer* rend = nullptr;
+    SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &win, &rend);
+    SDL_RenderSetScale(rend, 10, 10);
 
     auto vec = generate_random_vector();
+    selection_sort(vec, rend);
 
-    for (auto& ele: vec)
-        std::cout << ele << " ";
-
-    selection_sort(vec);
-    std::cout << '\n';
-
-    for (auto& ele: vec)
-        std::cout << ele << " ";
-
+    SDL_DestroyRenderer(rend);
+    SDL_Quit();
 
     return 0;
 }
