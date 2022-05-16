@@ -16,7 +16,7 @@ int main() {
     for (auto& ele: vec)
         std::cout << ele << " ";
 
-    quick_sort(vec, 0, vec.size()-1);
+    selection_sort(vec);
     std::cout << '\n';
 
     for (auto& ele: vec)
