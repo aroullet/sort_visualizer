@@ -14,7 +14,13 @@ int main() {
     auto vec = generate_random_vector();
 
     for (auto& ele: vec)
-        std::cout << ele << std::endl;
+        std::cout << ele << " ";
+
+    quick_sort(vec, 0, vec.size()-1);
+    std::cout << '\n';
+
+    for (auto& ele: vec)
+        std::cout << ele << " ";
 
 
     return 0;
