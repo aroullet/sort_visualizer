@@ -11,7 +11,7 @@ OBJS := $(patsubst %.cpp, %.o, $(SRC))
 
 .PHONY: all clean run
 
-all: $(EXE)
+all: clean $(EXE)
 
 $(EXE): $(OBJS)
 	$(CXX)  $(LDFLAGS) $(LDLIBS) $(OBJS) -o $(EXE)

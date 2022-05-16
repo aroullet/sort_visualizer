@@ -5,4 +5,4 @@
 #include <vector>
 
 void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned current, unsigned compared);
-void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j);
+void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j, int delay);

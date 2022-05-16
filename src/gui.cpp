@@ -1,6 +1,6 @@
 #include "gui.hpp"
 
-void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j) {
+void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i, unsigned j, int delay) {
 
     SDL_SetRenderDrawColor(rend, 255, 255, 255, 255); // white
     SDL_RenderClear(rend);
@@ -8,7 +8,7 @@ void update_gui(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned i
     draw_vector(vec, rend, i, j);
 
     SDL_RenderPresent(rend);
-    SDL_Delay(100);
+    SDL_Delay(delay);
 }
 
 void draw_vector(const std::vector<unsigned>& vec, SDL_Renderer* rend, unsigned current, unsigned compared) {
